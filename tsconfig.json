@@ -10,8 +10,12 @@
         "declaration": false,
         "noLib": false,
         "pretty": true,
-        "baseUrl": "src/",
+        "rootDir": "src/",
+        "baseUrl": "/",
         "outDir": "dist/"
     },
+    "include": [
+        "src/**/*"
+    ],
     "compileOnSave": true,
 }
