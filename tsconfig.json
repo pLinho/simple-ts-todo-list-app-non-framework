@@ -1,0 +1,17 @@
+{
+    "files": [
+        "src/main.ts"
+    ],
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "module": "AMD",
+        "noImplicitAny": true,
+        "target": "ES5",
+        "declaration": false,
+        "noLib": false,
+        "pretty": true,
+        "baseUrl": "src/",
+        "outDir": "dist/"
+    },
+    "compileOnSave": true,
+}
