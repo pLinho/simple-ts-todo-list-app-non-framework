@@ -2,57 +2,49 @@ import { ViewRender } from "./view-render";
 
 export abstract class Skin {
     static skinRef = 0;
+    private skinRef = Skin.skinRef++;
     protected className: string;
     protected viewElement: HTMLElement | HTMLElement[];
     protected styleElement: HTMLStyleElement;
 
-    skinRef = Skin.skinRef++;
-
     constructor(protected view: ViewRender) {
         this.className = '_s' + (this.skinRef).toString(32);
         this.apply(this.viewElement = this.view.rendered());
-        this.applySkin();
+        this.applySkinInElements();
         this.loadStyle();
     }
-    // addView(view: ViewRender) {
-    //     
-    // }
-    // removeView(view: ViewRender) {
-    // 
-    // }
-    appliedSkin(): boolean {
-        return (els => {
-            let applied = false;
-            els.forEach(el => !applied && el.classList.contains(this.className) ? applied = true : null)
-            return applied;
-        })(this.elements());
+    viewElements(): HTMLElement[] {
+        if (Array.isArray(this.viewElement))
+            return this.viewElement;
+        return new Array(this.viewElement);
     }
-    unapplySkin() {
-        this.elements().forEach(el => {
-            if (el.classList.contains(this.className)) {
-                el.classList.remove(this.className);
-            }
-        });
+    associateViewer(view: ViewRender) {
+        throw new Error('Not implemented! So sorry');
     }
-    applySkin() {
-        this.elements().forEach(el => {
+    removeViewer(view: ViewRender) {
+        throw new Error('Not implemented! So sorry');
+    }
+    applySkinInElements(elements = this.viewElements()) {
+        elements?.forEach(el => {
             if (!el.classList.contains(this.className)) {
                 el.classList.add(this.className);
             }
         });
     }
-
-    elements(): HTMLElement[] {
-        if (Array.isArray(this.viewElement))
-            return this.viewElement;
-        return new Array(this.viewElement);
+    removeSkinInElements(elements = this.viewElements()) {
+        elements?.forEach(el => {
+            if (el.classList.contains(this.className)) {
+                el.classList.remove(this.className);
+            }
+        });
     }
-    apply(el: HTMLElement): void { }
-    cssStyle(): string { return null };
-    destroy() {
-        this.unapplySkin();
-        if (this.styleElement)
-            this.styleElement.remove();
+    /// css
+    appliedSkin(): boolean {
+        return (els => {
+            let applied = false;
+            els.forEach(el => !applied && el.classList.contains(this.className) ? applied = true : null)
+            return applied;
+        })(this.viewElements());
     }
     loadStyle(cssStyle = this.cssStyle()) {
         if (cssStyle) {
@@ -64,5 +56,34 @@ export abstract class Skin {
                 this.styleElement
             );
         }
+    }
+    encapsuleStylesheet(stylesheet: string) {
+
+        // `.${this.className}{${cssStylesheet}}`;
+
+        return stylesheet;
+    }
+    loadStylesheet(cssStylesheet = this.cssStylesheet()) {
+        if (cssStylesheet) {
+            if (!this.styleElement)
+                this.styleElement = document.createElement('style');
+
+            this.styleElement.innerHTML = this.encapsuleStylesheet(cssStylesheet);
+
+            document.head.append(
+                this.styleElement
+            );
+        }
+    }
+    // element and css
+    cssStyle(): string { return null };
+    cssStylesheet(): string { return null };
+    apply(el: HTMLElement): void { }
+
+    // 
+    destroy() {
+        this.removeSkinInElements();
+        if (this.styleElement)
+            this.styleElement.remove();
     }
 }
