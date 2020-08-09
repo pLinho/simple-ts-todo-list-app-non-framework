@@ -1,13 +1,20 @@
 import { Skin } from "../core/appearance/skin";
 
 export class NoteSkin extends Skin {
-    cssStyle() {
+    style() {
         return `
                 background-color:${this.randomRGBColor()};
+                color: ${this.randomRGBColor()};
         `;
     }
     styleSheet() {
-        return ``;
+        return `
+        button{
+            background-color: ${this.randomRGBColor()};
+            border: none;
+            border-radius: 20px;
+        }
+        `;
     }
 
     randomRGBColor() {

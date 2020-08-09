@@ -12,8 +12,9 @@ export abstract class Skin {
         this.className = '_s' + (this.skinRef).toString(32);
         this.apply(this.viewElement = this.view.rendered());
         this.applySkinInElements();
-        this.loadStyle();
-        this.loadStyleSheet();
+        this.createStyleSheetElement();
+        this.replaceStyleSheetElementContent(this.prepareStyle(), this.prepareStyleSheet());
+        this.appendStyleSheetElementOnHead();
     }
     viewElements(): HTMLElement[] {
         if (Array.isArray(this.viewElement))
@@ -48,34 +49,33 @@ export abstract class Skin {
             return applied;
         })(this.viewElements());
     }
-    loadStyle(cssStyle = this.cssStyle()) {
+    prepareStyle(cssStyle = this.style()) {
         if (cssStyle) {
-            if (!this.styleElement)
-                this.styleElement = document.createElement('style');
-
-            this.styleElement.innerHTML = `.${this.className}{${cssStyle}}`;
-            document.head.append(
-                this.styleElement
-            );
-        }
-    }
-    loadStyleSheet(stylesheet = this.styleSheet()) {
-        if (stylesheet) {
-            /// if (!this.styleElement)
-            ///     this.styleElement = document.createElement('style// ');return
-
-            // this.styleElement.innerHTML =
-            return new StyleSheet(stylesheet).prependSelectorInSelectors(this.className);
-
-
-            // document.head.append(
-            //     tis.styleElemenht
-            // );
+            return `.${this.className}{${cssStyle}}`;
         }
         return '';
     }
+    prepareStyleSheet(stylesheet = this.styleSheet()) {
+        if (stylesheet) {
+            return new StyleSheet(stylesheet).prependSelectorInSelectors('.' + this.className);
+        }
+        return '';
+    }
+    createStyleSheetElement() {
+        if (!this.styleElement) {
+            return this.styleElement = document.createElement('style');
+        }
+    }
+    replaceStyleSheetElementContent(...content: string[]): string {
+        return this.styleElement.innerHTML = content.join('\n').replace(/[ \n]{1,}/g, ' ');
+    }
+    appendStyleSheetElementOnHead(): void {
+        return document.head.append(
+            this.styleElement);
+    }
+
     // element and css
-    cssStyle(): string { return null };
+    style(): string { return null };
     styleSheet(): string { return null };
     apply(el: HTMLElement): void { }
     destroy() {
