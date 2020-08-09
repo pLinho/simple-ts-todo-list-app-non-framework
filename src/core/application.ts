@@ -7,7 +7,7 @@ export class Application {
     private bootstrapViews() {
         this.views.map((view) => {
             document.body.append(
-                view.render());
+                view.rendered());
         });
     }
 

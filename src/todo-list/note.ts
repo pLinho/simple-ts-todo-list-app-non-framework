@@ -9,7 +9,6 @@ export class Note extends ViewRenderWithEvents<'ARCHIVE' | 'REMOVE', Note> {
         REMOVE: new Array<(note: Note) => void>(),
     };
 
-
     constructor(private note: String) {
         super();
     }

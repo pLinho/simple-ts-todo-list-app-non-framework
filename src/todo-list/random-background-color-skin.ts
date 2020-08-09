@@ -3,7 +3,7 @@ import { Skin } from "../core/skin";
 export class RandomBackgroundColorSkin extends Skin {
     cssStyle() {
         return `
-                background-color:${this.randomRGBColor();};
+                background-color:${this.randomRGBColor()};
         `;
     }
 
