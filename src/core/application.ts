@@ -1,4 +1,4 @@
-import { ViewRender } from "./core/view-render";
+import { ViewRender } from "./view-render";
 
 export class Application {
     private catchHandler: (error: Error) => void;

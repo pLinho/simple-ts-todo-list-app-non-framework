@@ -3,12 +3,12 @@
 Aplicativo de Lista de anotações
 
 
-
 Features
-- Adicionar anotação;
-- Visualizar lista com as anotações;
-- Remover anotação;
-- Arquivar anotação;
+- [✔] Adicionar anotação ;
+- [✔] Visualizar lista com as anotações;
+- [✔] Remover anotação;
+- [✔] Arquivar anotação;
+- [🍦] Arquivar anotação;
 
 ---
 (v 0.0.1)

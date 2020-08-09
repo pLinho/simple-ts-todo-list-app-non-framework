@@ -1,4 +1,4 @@
-import { Application } from "./application";
+import { Application } from "./core/application";
 import { TodoView } from "./todo-list/todo-view";
 
 new Application()

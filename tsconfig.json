@@ -1,6 +1,6 @@
 {
     "files": [
-        "src/main.ts"
+        "src/main.ts",
     ],
     "compilerOptions": {
         "moduleResolution": "Node",
