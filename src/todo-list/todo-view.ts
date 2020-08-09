@@ -2,16 +2,23 @@ import { ViewRender } from "../core/view-render";
 import { Note } from "./note";
 
 export class TodoView extends ViewRender {
-    // private notes: String[] = [];
     private view: HTMLElement;
     private notesView: HTMLElement;
+    private archivedNotes: String[] = [];
 
     appendNote(note: String) {
-        this.notesView.prepend((new Note(note))
-            .addEventListener('REMOVE', (note) => {
-                note.delete();
-            })
-            .render());
+        const noteView =
+            (new Note(note))
+                .addEventListener('REMOVE', (note) => {
+                    note.delete();
+                })
+                .addEventListener('ARCHIVE', (note) => {
+                    this.archivedNotes.push(note.toString());
+                    note.delete();
+                })
+                .render();
+        this.notesView.prepend(noteView);
+        return noteView;
     }
 
     copyInputValueToNotes = (inputElement: HTMLInputElement) => {
@@ -24,7 +31,7 @@ export class TodoView extends ViewRender {
         const input = document.createElement('input');
         const button = document.createElement('button');
 
-        button.innerText = '+';
+        button.innerText = 'add';
 
         input.addEventListener('keyup', (keyEvent: KeyboardEvent) => {
             if (keyEvent.code === 'Enter')
