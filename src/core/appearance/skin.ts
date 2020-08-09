@@ -1,4 +1,5 @@
-import { ViewRender } from "./view-render";
+import { StyleSheet } from "./stylesheet";
+import { ViewRender } from "../view-render";
 
 export abstract class Skin {
     static skinRef = 0;
@@ -12,6 +13,7 @@ export abstract class Skin {
         this.apply(this.viewElement = this.view.rendered());
         this.applySkinInElements();
         this.loadStyle();
+        this.loadStyleSheet();
     }
     viewElements(): HTMLElement[] {
         if (Array.isArray(this.viewElement))
@@ -57,30 +59,25 @@ export abstract class Skin {
             );
         }
     }
-    encapsuleStylesheet(stylesheet: string) {
+    loadStyleSheet(stylesheet = this.styleSheet()) {
+        if (stylesheet) {
+            /// if (!this.styleElement)
+            ///     this.styleElement = document.createElement('style// ');return
 
-        // `.${this.className}{${cssStylesheet}}`;
+            // this.styleElement.innerHTML =
+            return new StyleSheet(stylesheet).prependSelectorInSelectors(this.className);
 
-        return stylesheet;
-    }
-    loadStylesheet(cssStylesheet = this.cssStylesheet()) {
-        if (cssStylesheet) {
-            if (!this.styleElement)
-                this.styleElement = document.createElement('style');
 
-            this.styleElement.innerHTML = this.encapsuleStylesheet(cssStylesheet);
-
-            document.head.append(
-                this.styleElement
-            );
+            // document.head.append(
+            //     tis.styleElemenht
+            // );
         }
+        return '';
     }
     // element and css
     cssStyle(): string { return null };
-    cssStylesheet(): string { return null };
+    styleSheet(): string { return null };
     apply(el: HTMLElement): void { }
-
-    // 
     destroy() {
         this.removeSkinInElements();
         if (this.styleElement)

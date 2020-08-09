@@ -1,8 +1,8 @@
-import { RandomBackgroundColorSkin } from "./random-background-color-skin";
+import { NoteSkin } from "./note-skin";
 import { ViewRender } from "../core/view-render";
 
 export class Note extends ViewRender {
-    private skin = new RandomBackgroundColorSkin(this);
+    private skin = new NoteSkin(this);
     eventHandlers = {
         ARCHIVE: new Array<(note: Note) => void>(),
         REMOVE: new Array<(note: Note) => void>(),
