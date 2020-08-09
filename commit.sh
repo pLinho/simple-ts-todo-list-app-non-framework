@@ -1,9 +1,14 @@
 	#!/bin/bash
 git add .
 
-if [ $# -eq 0 ]
+
+if [ $1 -eq "fix" ]
 	then
-git commit -m "code... require squash. 🎈"
+		echo "teste fix"
+
+	elif [ $# -eq 0 ]
+	then
+		git commit -m "code... require squash. 🎈"
 	else
-git commit -m "$1"
+		git commit -m "$1"
 fi
