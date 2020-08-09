@@ -36,7 +36,7 @@ export class TodoView extends ViewRender {
 
         button.innerText = 'add';
 
-        input.addEventListener('keyup', (keyEvent: KeyboardEvent) => {
+        input.addEventListener('keydown', (keyEvent: KeyboardEvent) => {
             if (keyEvent.code === 'Enter')
                 this.copyInputValueToNotes(input).value = '';
         });

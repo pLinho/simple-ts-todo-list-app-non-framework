@@ -1,5 +1,5 @@
 import { ViewRenderWithEvents } from "../core/view-render-with-event";
-import { RandomBackgroundColorSkin } from "../core/note-skin";
+import { RandomBackgroundColorSkin } from "./random-background-color-skin";
 
 export class Note extends ViewRenderWithEvents<'ARCHIVE' | 'REMOVE', Note> {
     private skin = new RandomBackgroundColorSkin(this);
