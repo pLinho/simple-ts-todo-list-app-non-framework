@@ -11,7 +11,7 @@ export class Application {
         });
     }
 
-    appendView(view: ViewRender) {
+    loadView(view: ViewRender) {
         this.views.push(view);
         return this;
     }
