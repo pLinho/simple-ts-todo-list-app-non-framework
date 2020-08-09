@@ -7,7 +7,8 @@
         "module": "AMD",
         "noImplicitAny": true,
         "target": "ES5",
-        "declaration": false,
+        "declaration": true,
+        "sourceMap": true,
         "noLib": false,
         "pretty": true,
         "rootDir": "src/",
@@ -16,6 +17,9 @@
     },
     "include": [
         "src/**/*"
+    ],
+    "exclude": [
+        "node_modules/*"
     ],
     "compileOnSave": true,
 }

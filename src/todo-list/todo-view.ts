@@ -2,7 +2,6 @@ import { ViewRender } from "../core/view-render";
 import { Note } from "./note";
 
 export class TodoView extends ViewRender {
-    // viewElement: HTMLElement;
     private notesView: HTMLElement;
     private archivedNotes: String[] = [];
 
@@ -18,7 +17,7 @@ export class TodoView extends ViewRender {
                     this.archivedNotes.push(note.toString());
                     note.delete();
                 })
-                .render();
+                .rendered();
         this.notesView.prepend(noteElement);
 
         return noteElement;

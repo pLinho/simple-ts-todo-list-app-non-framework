@@ -1,32 +1,26 @@
-import { ViewRenderWithEvents } from "../core/view-render-with-event";
 import { RandomBackgroundColorSkin } from "./random-background-color-skin";
+import { ViewRender } from "../core/view-render";
 
-export class Note extends ViewRenderWithEvents<'ARCHIVE' | 'REMOVE', Note> {
+export class Note extends ViewRender {
     private skin = new RandomBackgroundColorSkin(this);
-    internalView: HTMLElement;
     eventHandlers = {
         ARCHIVE: new Array<(note: Note) => void>(),
         REMOVE: new Array<(note: Note) => void>(),
     };
-
     constructor(private note: String) {
         super();
     }
-
     delete() {
         this.skin.destroy();
-        this.internalView.remove();
+        this.destroy();
     }
-
     render() {
-        if (this.internalView) {
-            return this.internalView;
-        }
-        this.internalView = document.createElement('div');
+
+        const view = document.createElement('div');
         const removeButton = document.createElement('button');
         const archiveButton = document.createElement('button');
 
-        this.internalView.innerText = this.note.toString();
+        view.innerText = this.note.toString();
 
         removeButton.innerText = 'REMOVE';
         removeButton.addEventListener('click', () => {
@@ -38,11 +32,10 @@ export class Note extends ViewRenderWithEvents<'ARCHIVE' | 'REMOVE', Note> {
             this.dispatchEvent('ARCHIVE', this)
         });
 
-        this.internalView.prepend(archiveButton);
-        this.internalView.prepend(removeButton);
-        return this.internalView;
+        view.prepend(archiveButton);
+        view.prepend(removeButton);
+        return view;
     }
-
     toString() {
         return this.note;
     }

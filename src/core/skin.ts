@@ -2,37 +2,67 @@ import { ViewRender } from "./view-render";
 
 export abstract class Skin {
     static skinRef = 0;
-    skinRef = Skin.skinRef++;
     protected className: string;
-    protected viewElement: HTMLElement;
+    protected viewElement: HTMLElement | HTMLElement[];
     protected styleElement: HTMLStyleElement;
 
+    skinRef = Skin.skinRef++;
 
     constructor(protected view: ViewRender) {
         this.className = '_s' + (this.skinRef).toString(32);
-        this.viewElement = this.view.render();
-        this.addSkinElement();
-
-        this.apply(this.viewElement);
-
-        if (this.cssStyle()) {
-            this.styleElement = document.createElement('style');
-            this.styleElement.innerHTML = `.${this.className}{${this.cssStyle()}}`;
-            document.head.append(
-                this.styleElement
-            );
-        }
+        this.apply(this.viewElement = this.view.rendered());
+        this.applySkin();
+        this.loadStyle();
     }
-    removeSkinElement() {
-        this.viewElement.classList.remove(this.className);
+    // addView(view: ViewRender) {
+    //     
+    // }
+    // removeView(view: ViewRender) {
+    // 
+    // }
+    appliedSkin(): boolean {
+        return (els => {
+            let applied = false;
+            els.forEach(el => !applied && el.classList.contains(this.className) ? applied = true : null)
+            return applied;
+        })(this.elements());
     }
-    addSkinElement() {
-        this.viewElement.classList.add(this.className);
+    unapplySkin() {
+        this.elements().forEach(el => {
+            if (el.classList.contains(this.className)) {
+                el.classList.remove(this.className);
+            }
+        });
+    }
+    applySkin() {
+        this.elements().forEach(el => {
+            if (!el.classList.contains(this.className)) {
+                el.classList.add(this.className);
+            }
+        });
+    }
+
+    elements(): HTMLElement[] {
+        if (Array.isArray(this.viewElement))
+            return this.viewElement;
+        return new Array(this.viewElement);
     }
     apply(el: HTMLElement): void { }
     cssStyle(): string { return null };
     destroy() {
-        this.removeSkinElement();
-        this.styleElement.remove();
+        this.unapplySkin();
+        if (this.styleElement)
+            this.styleElement.remove();
+    }
+    loadStyle(cssStyle = this.cssStyle()) {
+        if (cssStyle) {
+            if (!this.styleElement)
+                this.styleElement = document.createElement('style');
+
+            this.styleElement.innerHTML = `.${this.className}{${cssStyle}}`;
+            document.head.append(
+                this.styleElement
+            );
+        }
     }
 }

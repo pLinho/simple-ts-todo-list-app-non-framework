@@ -10,12 +10,10 @@ export class Application {
                 view.rendered());
         });
     }
-
     loadView(view: ViewRender) {
         this.views.push(view);
         return this;
     }
-
     bootstrap() {
         try {
             this.bootstrapViews();
@@ -25,7 +23,6 @@ export class Application {
         }
         return this;
     }
-
     catch(handler: (error: Error) => void) {
         this.catchHandler = handler;
         return this;

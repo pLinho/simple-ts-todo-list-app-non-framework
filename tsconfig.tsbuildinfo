@@ -1,0 +1,147 @@
+{
+  "program": {
+    "fileInfos": {
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.d.ts": {
+        "version": "2dc8c927c9c162a773c6bb3cdc4f3286c23f10eedc67414028f9cb5951610f60",
+        "signature": "2dc8c927c9c162a773c6bb3cdc4f3286c23f10eedc67414028f9cb5951610f60",
+        "affectsGlobalScope": false
+      },
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.es5.d.ts": {
+        "version": "70ae6416528e68c2ee7b62892200d2ca631759943d4429f8b779b947ff1e124d",
+        "signature": "70ae6416528e68c2ee7b62892200d2ca631759943d4429f8b779b947ff1e124d",
+        "affectsGlobalScope": true
+      },
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.dom.d.ts": {
+        "version": "9affb0a2ddc57df5b8174c0af96c288d697a262e5bc9ca1f544c999dc64a91e6",
+        "signature": "9affb0a2ddc57df5b8174c0af96c288d697a262e5bc9ca1f544c999dc64a91e6",
+        "affectsGlobalScope": true
+      },
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.webworker.importscripts.d.ts": {
+        "version": "7fac8cb5fc820bc2a59ae11ef1c5b38d3832c6d0dfaec5acdb5569137d09a481",
+        "signature": "7fac8cb5fc820bc2a59ae11ef1c5b38d3832c6d0dfaec5acdb5569137d09a481",
+        "affectsGlobalScope": true
+      },
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.scripthost.d.ts": {
+        "version": "097a57355ded99c68e6df1b738990448e0bf170e606707df5a7c0481ff2427cd",
+        "signature": "097a57355ded99c68e6df1b738990448e0bf170e606707df5a7c0481ff2427cd",
+        "affectsGlobalScope": true
+      },
+      "./src/core/event-listener.ts": {
+        "version": "f895c0607dd7d26003ee2b730a9640c43a01e77d2216b61f78b1d424702acfe7",
+        "signature": "4a67c845d98806b665d8a783401e365dcfa5bac23a23d953733303572df6cef0",
+        "affectsGlobalScope": false
+      },
+      "./src/core/view-render.ts": {
+        "version": "8682fa6cb9004b0e2a0fe64cd3043502b7d262184703428a1c100015dfc46322",
+        "signature": "439fe357ba94f0eac1d3c171a4112ffbd7a890a1e7d4a05ac7251eb50071d093",
+        "affectsGlobalScope": false
+      },
+      "./src/core/application.ts": {
+        "version": "bbafb4eef8242e43d76e74f01835ea0e16457d826f0e82345e6ed4ebc956b71c",
+        "signature": "806d086b1f5ffbfc7a6820201c3f9d17c00389e9f8e5ddd903da858c42bf6090",
+        "affectsGlobalScope": false
+      },
+      "./src/core/skin.ts": {
+        "version": "a4d1384c51d00fca3c06502654c50ce7f34bb99a854d582d5148e9d24c9e7c59",
+        "signature": "94ed4d64bda4fac152467ab736894aab43618b61711bb4794e7f0c14e3a17224",
+        "affectsGlobalScope": false
+      },
+      "./src/todo-list/random-background-color-skin.ts": {
+        "version": "aad70cc8f36589c5e6af141462d66880a34b268c180e407304df0e2455d33633",
+        "signature": "2b33e625d9d29120ff3a6b25f519e012a043f9674c1fd8dcbe21cb85d9545359",
+        "affectsGlobalScope": false
+      },
+      "./src/todo-list/note.ts": {
+        "version": "199f9a7f31970d287262bdaec3e09dbd6dc85c2504203ca2f4a42a0063f12399",
+        "signature": "40a480f4296da279c82d17a3bd3faf6f9d02346ec344cadd147069183f5e303d",
+        "affectsGlobalScope": false
+      },
+      "./src/todo-list/todo-view.ts": {
+        "version": "3e5bf25b3df458d0e570e3116477ad534bb9c78dd2bf08cf9e71a44671c87128",
+        "signature": "4cb1a3888ef7fadb682a75ce7fc87973087d76da4bfee7c3ad482cdf3d3047ad",
+        "affectsGlobalScope": false
+      },
+      "./src/main.ts": {
+        "version": "bb9206366ae0e94732623a32125cab8938d782082461e23220c7321ae048c06f",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "affectsGlobalScope": false
+      }
+    },
+    "options": {
+      "moduleResolution": 2,
+      "module": 2,
+      "noImplicitAny": true,
+      "target": 1,
+      "composite": true,
+      "noLib": false,
+      "pretty": true,
+      "rootDir": "./src",
+      "baseUrl": "../../../../..",
+      "outDir": "./dist",
+      "watch": true,
+      "configFilePath": "./tsconfig.json"
+    },
+    "referencedMap": {
+      "./src/core/application.ts": [
+        "./src/core/view-render.ts"
+      ],
+      "./src/core/skin.ts": [
+        "./src/core/view-render.ts"
+      ],
+      "./src/core/view-render.ts": [
+        "./src/core/event-listener.ts"
+      ],
+      "./src/main.ts": [
+        "./src/core/application.ts",
+        "./src/todo-list/todo-view.ts"
+      ],
+      "./src/todo-list/note.ts": [
+        "./src/core/view-render.ts",
+        "./src/todo-list/random-background-color-skin.ts"
+      ],
+      "./src/todo-list/random-background-color-skin.ts": [
+        "./src/core/skin.ts"
+      ],
+      "./src/todo-list/todo-view.ts": [
+        "./src/core/view-render.ts",
+        "./src/todo-list/note.ts"
+      ]
+    },
+    "exportedModulesMap": {
+      "./src/core/application.ts": [
+        "./src/core/view-render.ts"
+      ],
+      "./src/core/skin.ts": [
+        "./src/core/view-render.ts"
+      ],
+      "./src/core/view-render.ts": [
+        "./src/core/event-listener.ts"
+      ],
+      "./src/todo-list/note.ts": [
+        "./src/core/view-render.ts"
+      ],
+      "./src/todo-list/random-background-color-skin.ts": [
+        "./src/core/skin.ts"
+      ],
+      "./src/todo-list/todo-view.ts": [
+        "./src/core/view-render.ts"
+      ]
+    },
+    "semanticDiagnosticsPerFile": [
+      "./src/core/application.ts",
+      "./src/core/event-listener.ts",
+      "./src/core/skin.ts",
+      "./src/core/view-render.ts",
+      "./src/main.ts",
+      "./src/todo-list/note.ts",
+      "./src/todo-list/random-background-color-skin.ts",
+      "./src/todo-list/todo-view.ts",
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.d.ts",
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.dom.d.ts",
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.es5.d.ts",
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.scripthost.d.ts",
+      "../../../../../usr/lib/node_modules/typescript/lib/lib.webworker.importscripts.d.ts"
+    ]
+  },
+  "version": "3.9.7"
+}
