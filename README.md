@@ -1,4 +1,4 @@
-# Todo list
+# Todo list (v0.0.1)
 
 Aplicativo de Lista de anotações
 
@@ -11,10 +11,10 @@ Features
 
 ---
 
-# Micro Core
-MiniCore Typescript non-framework to simple proposes.
+# Micro Core (v0.0.0)
+Mini Core in Typescript to manipulate html non-templates.
 
 Features: 
-- Skin View;
+- Skin Class for change appearance of ViewsRenders with css notation;
+- Encapsulated skins for created components in runtime;
 - ViewRender;
-- 
