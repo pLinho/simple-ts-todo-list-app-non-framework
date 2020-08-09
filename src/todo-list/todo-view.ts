@@ -6,9 +6,11 @@ export class TodoView extends ViewRender {
     private notesView: HTMLElement;
     private archivedNotes: String[] = [];
 
-    appendNote(note: String) {
-        const noteView =
-            (new Note(note))
+    appendNote(noteText: String) {
+
+        const noteView = new Note(noteText);
+        const noteElement =
+            (noteView)
                 .addEventListener('REMOVE', (note) => {
                     note.delete();
                 })
@@ -17,8 +19,9 @@ export class TodoView extends ViewRender {
                     note.delete();
                 })
                 .render();
-        this.notesView.prepend(noteView);
-        return noteView;
+        this.notesView.prepend(noteElement);
+
+        return noteElement;
     }
 
     copyInputValueToNotes = (inputElement: HTMLInputElement) => {
