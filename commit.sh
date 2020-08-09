@@ -1,10 +1,12 @@
-	#!/bin/bash
+#!/bin/bash
 git add .
 
-
-if [ $1 -eq "fix" ]
+if [ $1 = "fix" ]
 	then
-		echo "teste fix"
+		if [ $# -eq 2 ]
+			then
+			git commit -m "fixed $2"
+	fi
 
 	elif [ $# -eq 0 ]
 	then
