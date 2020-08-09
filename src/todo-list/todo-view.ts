@@ -31,20 +31,30 @@ export class TodoView extends ViewRender {
     renderView() {
         const view = document.createElement('div');
         const input = document.createElement('input');
-        const button = document.createElement('button');
+        const addButton = document.createElement('button');
+        const infiniteButton = document.createElement('button');
 
-        button.innerText = 'add';
+        addButton.innerText = 'add';
+        infiniteButton.innerText = '++';
 
         input.addEventListener('keydown', (keyEvent: KeyboardEvent) => {
             if (keyEvent.code === 'Enter')
                 this.copyInputValueToNotes(input).value = '';
         });
-        button.addEventListener('click', () => {
+        addButton.addEventListener('click', () => {
             this.copyInputValueToNotes(input).value = '';
+        });
+        infiniteButton.addEventListener('click', () => {
+            let cnt = 0; while (cnt < 1000) {
+                cnt++;
+                this.copyInputValueToNotes(input).value = 'whoop';
+            }  
+
         });
 
         view.append(input);
-        view.append(button);
+        view.append(addButton);
+        view.append(infiniteButton);
         view.append(this.notesView = document.createElement('div'));
 
         return view;
