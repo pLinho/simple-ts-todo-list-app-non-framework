@@ -39,7 +39,7 @@ export class MaterialInputSkinClone extends Skin {
   style() {
     return `
     font-family:  sans-serif;
-    font-size: 12px
+    font-size: 12px;
     `;
   }
   styleSheet() {
