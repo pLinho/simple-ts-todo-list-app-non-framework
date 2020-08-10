@@ -5,8 +5,8 @@ import { GenID } from "../core/utils/uuid";
 
 export class TodoView extends ViewRender {
     private notesView: HTMLElement;
-    private archivedNotes: String[] = (JSON.parse(localStorage.getItem('__notes_archive_')) as String[])?.reverse() || [];
-    private notes: String[] = (JSON.parse(localStorage.getItem('__notes_')) as String[])?.reverse() || [];
+    private archivedNotes: String[] = [];
+    private notes: String[] = [];
     init() {
         this.loadNotes();
     }

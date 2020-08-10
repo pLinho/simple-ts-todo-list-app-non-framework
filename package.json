@@ -15,5 +15,7 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "^3.9.7"
   },
-  "dependencies": {}
+  "dependencies": {
+    "typescript": "^3.9.7"
+  }
 }

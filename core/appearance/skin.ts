@@ -28,14 +28,14 @@ export abstract class Skin {
         throw new Error('Method not implemented.');
     }
     applySkinInElements(elements = this.viewElements()) {
-        elements?.forEach(el => {
+        elements.forEach(el => {
             if (!el.classList.contains(this.className)) {
                 el.classList.add(this.className);
             }
         });
     }
     removeSkinInElements(elements = this.viewElements()) {
-        elements?.forEach(el => {
+        elements.forEach(el => {
             if (el.classList.contains(this.className)) {
                 el.classList.remove(this.className);
             }
