@@ -2,13 +2,15 @@ import { ViewRender } from "../core/view-render";
 import { Note } from "./note";
 import { randomText } from "./random-phrase";
 import { GenID } from "../core/utils/uuid";
+import { CustomInput } from "./custom-input";
+import { HorizontalGroup } from "./h-group";
 
 export class TodoView extends ViewRender {
   private notesView: HTMLElement;
   private archivedNotes: String[] = [];
   private notes: String[] = localStorage.getItem("__notes_")
     ? JSON.parse(localStorage.getItem("__notes_"))
-    : ['Nota 1', 'Nota 2', 'Nota 3'];
+    : ["Nota 1", "Nota 2", "Nota 3"];
   init() {
     this.loadNotes();
   }
@@ -55,12 +57,13 @@ export class TodoView extends ViewRender {
   };
   renderView() {
     const globalView = document.createElement("div");
-    const annotationInput = document.createElement("input");
+    const annotationInput = new CustomInput().rendered() as HTMLInputElement;
     const addButton = document.createElement("button");
     const infiniteButton = document.createElement("button");
 
     addButton.innerText = "➕";
     infiniteButton.innerText = "🥠";
+    annotationInput.placeholder = "Tarefa, nota etc...";
 
     annotationInput.addEventListener("keydown", (keyEvent: KeyboardEvent) => {
       if (keyEvent.code === "Enter")
@@ -80,9 +83,12 @@ export class TodoView extends ViewRender {
       };
       add();
     });
-    globalView.append(annotationInput);
-    globalView.append(addButton);
-    globalView.append(infiniteButton);
+
+    globalView.append(
+      new HorizontalGroup(annotationInput, addButton, infiniteButton)
+      .margin(0,0,10)
+      .rendered()
+    );
     globalView.append((this.notesView = document.createElement("div")));
 
     return globalView;
