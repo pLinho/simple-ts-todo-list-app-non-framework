@@ -4,9 +4,10 @@ export class StyleSheet {
     replace(stylesheet: string) {
         this.stylesheet = stylesheet;
     }
-    prependSelectorInSelectors(selector:string) :string{
+    prependSelectorInSelectors(selector: string): string {
         return this.stylesheet
-            .replace(whitespaceCSSSelectorLeftBraceGlobalRxg, `\n ${selector} $2$3`);
+            .replace(whitespaceCSSSelectorLeftBraceGlobalRxg, `\n ${selector} $2$3`)
+            .replace(new RegExp('[ ]{0,}:root'), ''); // root selector
     }
     minify() {
         throw new Error('Not implemented');

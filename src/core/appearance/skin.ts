@@ -22,10 +22,10 @@ export abstract class Skin {
         return new Array(this.viewElement);
     }
     associateViewer(view: ViewRender) {
-        throw new Error('Not implemented! So sorry');
+        throw new Error('Method not implemented.');
     }
     removeViewer(view: ViewRender) {
-        throw new Error('Not implemented! So sorry');
+        throw new Error('Method not implemented.');
     }
     applySkinInElements(elements = this.viewElements()) {
         elements?.forEach(el => {

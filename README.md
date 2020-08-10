@@ -26,6 +26,6 @@ Features:
     tsc 
 ```
 
-## Run Application
+## Runs Application
 
 Open file `dist/index.html` on browser. 
