@@ -26,7 +26,7 @@ export class TodoView extends ViewRender {
         this.removeNote(note);
       })
       .addEventListener("ARCHIVE", note => {
-        throw new Error("Method not implemented.");
+        alert("Method not implemented.");
       })
       .rendered();
     this.notesView.prepend(noteElement);
@@ -86,8 +86,8 @@ export class TodoView extends ViewRender {
 
     globalView.append(
       new HorizontalGroup(annotationInput, addButton, infiniteButton)
-      .margin(0,0,10)
-      .rendered()
+        .margin(0, 0, 10)
+        .rendered()
     );
     globalView.append((this.notesView = document.createElement("div")));
 

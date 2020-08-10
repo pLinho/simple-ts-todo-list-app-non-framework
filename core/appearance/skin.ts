@@ -2,7 +2,7 @@ import { StyleSheet } from "./stylesheet";
 import { ViewRender } from "../view-render";
 
 export abstract class Skin {
-  static skinRef = 0;
+  private static skinRef = 0;
   private skinRef = Skin.skinRef++;
   protected className: string;
   protected viewElement: HTMLElement | HTMLElement[];
@@ -19,24 +19,18 @@ export abstract class Skin {
     );
     this.appendStyleSheetElementOnHead();
   }
-  viewElements(): HTMLElement[] {
+  private viewElements(): HTMLElement[] {
     if (Array.isArray(this.viewElement)) return this.viewElement;
     return new Array(this.viewElement);
   }
-  associateViewer(view: ViewRender) {
-    throw new Error("Method not implemented.");
-  }
-  removeViewer(view: ViewRender) {
-    throw new Error("Method not implemented.");
-  }
-  applySkinInElements(elements = this.viewElements()) {
+  private applySkinInElements(elements = this.viewElements()) {
     elements.forEach(el => {
       if (!el.classList.contains(this.className)) {
         el.classList.add(this.className);
       }
     });
   }
-  removeSkinInElements(elements = this.viewElements()) {
+  private removeSkinInElements(elements = this.viewElements()) {
     elements.forEach(el => {
       if (el.classList.contains(this.className)) {
         el.classList.remove(this.className);
@@ -44,7 +38,7 @@ export abstract class Skin {
     });
   }
   /// css
-  appliedSkin(): boolean {
+  private appliedSkin(): boolean {
     return (els => {
       let applied = false;
       els.forEach(el =>
@@ -55,13 +49,13 @@ export abstract class Skin {
       return applied;
     })(this.viewElements());
   }
-  prepareStyle(cssStyle = this.style()) {
+  private prepareStyle(cssStyle = this.style()) {
     if (cssStyle) {
       return `.${this.className}{${cssStyle}}`;
     }
     return "";
   }
-  prepareStyleSheet(stylesheet = this.styleSheet()) {
+  private prepareStyleSheet(stylesheet = this.styleSheet()) {
     if (stylesheet) {
       return new StyleSheet(stylesheet).prependSelectorInSelectors(
         "." + this.className
@@ -69,28 +63,28 @@ export abstract class Skin {
     }
     return "";
   }
-  createStyleSheetElement() {
+  private createStyleSheetElement() {
     if (!this.styleElement) {
       return (this.styleElement = document.createElement("style"));
     }
   }
-  replaceStyleSheetElementContent(...content: string[]): string {
+  private replaceStyleSheetElementContent(...content: string[]): string {
     return (this.styleElement.innerHTML = content
       .join("\n")
       .replace(/[ \n]{1,}/g, " "));
   }
-  appendStyleSheetElementOnHead(): void {
+  private appendStyleSheetElementOnHead(): void {
     return document.head.append(this.styleElement);
   }
 
   // element and css
-  style(): string {
+  protected style(): string {
     return null;
   }
-  styleSheet(): string {
+  protected styleSheet(): string {
     return null;
   }
-  apply(el: HTMLElement): void {}
+  protected apply(el: HTMLElement): void {}
   destroy() {
     this.removeSkinInElements();
     if (this.styleElement) this.styleElement.remove();
