@@ -1,6 +1,6 @@
 {
     "files": [
-        "src/main.ts",
+        "src/main.ts"
     ],
     "compilerOptions": {
         "moduleResolution": "Node",
@@ -21,5 +21,5 @@
     "exclude": [
         "node_modules/*"
     ],
-    "compileOnSave": true,
+    "compileOnSave": true
 }
