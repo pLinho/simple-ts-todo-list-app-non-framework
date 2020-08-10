@@ -5,8 +5,8 @@ import { GenID } from "../core/utils/uuid";
 
 export class TodoView extends ViewRender {
     private notesView: HTMLElement;
-    private archivedNotes: String[] = (JSON.parse(localStorage.getItem('__notes_archive_Þᾨᾛἧή⨩')) as String[])?.reverse() || [];
-    private notes: String[] = (JSON.parse(localStorage.getItem('__notes_Þᾨᾛἧή⨩')) as String[])?.reverse() || [];
+    private archivedNotes: String[] = (JSON.parse(localStorage.getItem('__notes_archive_')) as String[])?.reverse() || [];
+    private notes: String[] = (JSON.parse(localStorage.getItem('__notes_')) as String[])?.reverse() || [];
     init() {
         this.loadNotes();
     }
@@ -94,10 +94,10 @@ export class TodoView extends ViewRender {
     }
 
     saveNotes() {
-        localStorage.setItem('__notes_Þᾨᾛἧή⨩', JSON.stringify(this.notes));
+        localStorage.setItem('__notes_', JSON.stringify(this.notes));
     }
     saveArchive() {
-        localStorage.setItem('__notes_archive_Þᾨᾛἧή⨩', JSON.stringify(this.archivedNotes));
+        localStorage.setItem('__notes_archive_', JSON.stringify(this.archivedNotes));
     }
 
     loadNotes() {
