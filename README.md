@@ -18,3 +18,14 @@ Features:
 - Skin Class for change appearance of ViewsRenders with css notation;
 - Encapsulated skins for created components in runtime;
 - ViewRender;
+
+---
+
+## Build Application
+```sh
+    tsc 
+```
+
+## Run Application
+
+Open file `dist/index.html` on browser. 

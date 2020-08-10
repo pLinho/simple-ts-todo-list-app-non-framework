@@ -6,7 +6,7 @@
         "moduleResolution": "Node",
         "module": "AMD",
         "noImplicitAny": true,
-        "target": "ES5",
+        "target": "ES2015",
         "declaration": true,
         "sourceMap": true,
         "noLib": false,

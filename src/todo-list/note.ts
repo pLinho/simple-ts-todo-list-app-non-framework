@@ -15,25 +15,27 @@ export class Note extends ViewRender {
         this.destroy();
     }
     render() {
-
         const view = document.createElement('div');
+        const textInfo = document.createElement('span');
         const removeButton = document.createElement('button');
         const archiveButton = document.createElement('button');
 
-        view.innerText = this.note.toString();
+        view.append(textInfo);
+        view.append(archiveButton);
+        view.append(removeButton);
+        
+        textInfo.innerText = this.note.toString();
 
-        removeButton.innerText = 'REMOVE';
+        removeButton.innerText = '❌';
         removeButton.addEventListener('click', () => {
             this.dispatchEvent('REMOVE', this)
         });
 
-        archiveButton.innerText = 'ARCHIVE';
+        archiveButton.innerText = '📁';
         archiveButton.addEventListener('click', () => {
             this.dispatchEvent('ARCHIVE', this)
         });
 
-        view.prepend(archiveButton);
-        view.prepend(removeButton);
         return view;
     }
     toString() {

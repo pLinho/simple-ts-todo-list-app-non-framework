@@ -1,66 +1,108 @@
 import { ViewRender } from "../core/view-render";
 import { Note } from "./note";
+import { randomText } from "./random-phrase";
+import { GenID } from "../core/utils/uuid";
 
 export class TodoView extends ViewRender {
     private notesView: HTMLElement;
-    private archivedNotes: String[] = [];
-
-    appendNote(noteText: String) {
-
-        const noteView = new Note(noteText);
+    private archivedNotes: String[] = (JSON.parse(localStorage.getItem('__notes_archive_Þᾨᾛἧή⨩')) as String[])?.reverse() || [];
+    private notes: String[] = (JSON.parse(localStorage.getItem('__notes_Þᾨᾛἧή⨩')) as String[])?.reverse() || [];
+    init() {
+        this.loadNotes();
+    }
+    render() {
+        return this.renderView();
+    }
+    appendNote(noteText: String, saveNote = true) {
+        if (!noteText || noteText === '') return;
+        const note = new Note(noteText);
+        const id = GenID();
         const noteElement =
-            (noteView)
+            (note)
                 .addEventListener('REMOVE', (note) => {
-                    note.delete();
+                    this.removeNote(note);
                 })
                 .addEventListener('ARCHIVE', (note) => {
-                    this.archivedNotes.push(note.toString());
-                    note.delete();
+                    throw new Error('Method not implemented.');
                 })
                 .rendered();
         this.notesView.prepend(noteElement);
+        noteElement.id = id;
+        if (saveNote)
+            this.saveNote(noteText);
 
         return noteElement;
     }
-
+    removeNote(note: Note) {
+        this.notes.splice(
+            (this.notes.length - 1) -
+            this.indexElementOnParent(note.rendered())
+            , 1);
+        this.saveNotes();
+        note.delete();
+    }
+    indexElementOnParent(element: HTMLElement) {
+        var children = element.parentElement.children;
+        for (let i = 0; children.length; i++) {
+            if (children.item(i) === element) {
+                console.log(i);
+                return i;
+            }
+        }
+    }
     copyInputValueToNotes = (inputElement: HTMLInputElement) => {
         this.appendNote(inputElement.value);
         return inputElement;
     }
-
     renderView() {
-        const view = document.createElement('div');
-        const input = document.createElement('input');
+        const globalView = document.createElement('div');
+        const annotationInput = document.createElement('input');
         const addButton = document.createElement('button');
         const infiniteButton = document.createElement('button');
 
-        addButton.innerText = 'add';
-        infiniteButton.innerText = '++';
+        addButton.innerText = '➕';
+        infiniteButton.innerText = '🥠';
 
-        input.addEventListener('keydown', (keyEvent: KeyboardEvent) => {
+        annotationInput.addEventListener('keydown', (keyEvent: KeyboardEvent) => {
             if (keyEvent.code === 'Enter')
-                this.copyInputValueToNotes(input).value = '';
+                this.copyInputValueToNotes(annotationInput).value = '';
         });
         addButton.addEventListener('click', () => {
-            this.copyInputValueToNotes(input).value = '';
+            this.copyInputValueToNotes(annotationInput).value = '';
         });
         infiniteButton.addEventListener('click', () => {
-            let cnt = 0; while (cnt < 1000) {
-                cnt++;
-                this.copyInputValueToNotes(input).value = 'whoop';
-            }  
+            let cnt = 0;
+            const add = () => {
+                setTimeout(() => {
+                    this.appendNote(randomText());
 
+                    if (++cnt < 1) add();
+                }, 0);
+            }
+            add();
         });
+        globalView.append(annotationInput);
+        globalView.append(addButton);
+        globalView.append(infiniteButton);
+        globalView.append(this.notesView = document.createElement('div'));
 
-        view.append(input);
-        view.append(addButton);
-        view.append(infiniteButton);
-        view.append(this.notesView = document.createElement('div'));
-
-        return view;
+        return globalView;
     }
 
-    render() {
-        return this.renderView();
+    saveNote(note: String) {
+        this.notes.push(note);
+        this.saveNotes();
     }
+
+    saveNotes() {
+        localStorage.setItem('__notes_Þᾨᾛἧή⨩', JSON.stringify(this.notes));
+    }
+    saveArchive() {
+        localStorage.setItem('__notes_archive_Þᾨᾛἧή⨩', JSON.stringify(this.archivedNotes));
+    }
+
+    loadNotes() {
+        this.notes.reverse().forEach(note => this.appendNote(note, false));
+    }
+
 }
