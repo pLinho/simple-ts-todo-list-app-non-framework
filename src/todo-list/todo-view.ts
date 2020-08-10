@@ -45,7 +45,6 @@ export class TodoView extends ViewRender {
         var children = element.parentElement.children;
         for (let i = 0; children.length; i++) {
             if (children.item(i) === element) {
-                console.log(i);
                 return i;
             }
         }
