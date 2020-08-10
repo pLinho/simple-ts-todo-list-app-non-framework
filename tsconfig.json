@@ -1,9 +1,19 @@
 {
     "files": [
-        "src/**/*"
+        "src/main.ts",
     ],
     "compilerOptions": {
-        "rootDir": "src/"
+        "moduleResolution": "Node",
+        "module": "AMD",
+        "noImplicitAny": true,
+        "target": "ES2015",
+        "declaration": true,
+        "sourceMap": true,
+        "noLib": false,
+        "pretty": true,
+        "rootDir": "src/",
+        "baseUrl": "/",
+        "outDir": "dist/"
     },
     "include": [
         "src/**/*"
@@ -11,5 +21,5 @@
     "exclude": [
         "node_modules/*"
     ],
-    "compileOnSave": true
+    "compileOnSave": true,
 }
