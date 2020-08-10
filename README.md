@@ -1,6 +1,11 @@
 # Todo list (v0.0.1)
 
-Aplicativo de Lista de anotações
+Simple Todo List in Typescript, non-framework, non-templates;
+
+#### Links
+[Example in Stackblitz](https://todo-list-23t23r.stackblitz.io/)
+
+---
 
 Features
 - [✔] Adicionar anotação ;
@@ -8,16 +13,18 @@ Features
 - [✔] Remover anotação;
 - [✔] Arquivar anotação;
 - [🍦] Visualizar anotações arquivadas;
+- [✔] Sample Material Input Implementation **(only StackBlitz Example)**
+
 
 ---
 
-# Micro Core (v0.0.0)
+# Micro Core (v0.0.0) - Only Study
 Mini Core in Typescript to manipulate html non-templates.
 
 Features: 
-- Skin Class for change appearance of ViewsRenders with css notation;
-- Encapsulated skins for created components in runtime;
-- ViewRender;
+- [✔] Skin, change appearance for ViewsRenders (StyleSheet notation);
+- [✔] Encapsulated skin for created individual component in runtime;
+- [✔] ViewRender Class;
 
 ---
 
