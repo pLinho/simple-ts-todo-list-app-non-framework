@@ -35,4 +35,11 @@ Features:
 
 ## Runs Application
 
-Open file `dist/index.html` on browser. 
+Open file `dist/index.html` on browser.
+
+
+---
+
+## Conclusão
+
+Após acompanhar o repositório por mais de um ano posso concluir que é interessante a abordagem de ter a total liberdade de não precisar respeitar nenhum padrão pré-estabelecido. Por outro lago, gera uma dependência na manutenção do pacote NPM, nas primeira semana, metade das dependências receberam reporte de vulnerabilidade com medida de correção necessária. Basicamente, a liberdade de fazer as coisas de qualquer jeito lhe tratá uma eterna dependência de manutenção. Aoutilizar o angular por exeplo, basta rodar o comando `ng update` e tudo passa a ser corrigido de acordo necessidade. 
